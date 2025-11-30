@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projetandroid.R;
+import com.example.projetandroid.adapters.PropertyAdapter;
 import com.example.projetandroid.models.Property;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +26,7 @@ import java.util.List;
 public class PropertiesFragment extends Fragment {
 
     private RecyclerView recyclerView;
+    private PropertyAdapter propertyAdapter;
     private FloatingActionButton fabAddProperty;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -46,13 +48,16 @@ public class PropertiesFragment extends Fragment {
 
         // Configuration RecyclerView
         propertyList = new ArrayList<>();
+        propertyAdapter = new PropertyAdapter(propertyList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(propertyAdapter);
 
         // Charger les propriétés
         loadProperties();
 
         // Listener FAB
         fabAddProperty.setOnClickListener(v -> {
+            // TODO: Implémenter l'ajout d'une propriété
             Toast.makeText(getContext(), "Ajouter une propriété", Toast.LENGTH_SHORT).show();
         });
 
@@ -72,9 +77,7 @@ public class PropertiesFragment extends Fragment {
                         property.setPropertyId(document.getId());
                         propertyList.add(property);
                     }
-                    Toast.makeText(getContext(),
-                            propertyList.size() + " propriétés trouvées",
-                            Toast.LENGTH_SHORT).show();
+                    propertyAdapter.notifyDataSetChanged(); // Notifier l'adapter
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(getContext(),

@@ -33,24 +33,25 @@ android {
 }
 
 dependencies {
+    // AndroidX dependencies from version catalog
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation(libs.firebase.common)
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.firestore)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
 
-    // Import the Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
+    // Firebase BOM - This manages versions for other Firebase libs
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+
+    // Declare Firebase dependencies without versions, letting the BOM control them
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-common")
 
     // CircleImageView
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
-    // TODO: Add the dependencies for Firebase products you want to use
-    // When using the BoM, don't specify versions in Firebase dependencies
-    // https://firebase.google.com/docs/android/setup#available-libraries
+    // Test dependencies
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 }
