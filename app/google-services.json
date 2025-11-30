@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1079861871446",
+    "project_id": "samsara-c395c",
+    "storage_bucket": "samsara-c395c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1079861871446:android:1941cfdbd576637dde4cf7",
+        "android_client_info": {
+          "package_name": "com.example.projetandroid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6Z8OZjGXRuvr2QyBN2FcLcNw6xeJWRF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
